@@ -21,3 +21,9 @@ def add_new_post(title, author, content, file_path):
 def get_new_post_id(posts):
     max_id = max((post["id"] for post in posts), default=0)
     return max_id + 1
+
+
+def delete_blog_post(id, file_path):
+    posts = load_json(file_path)
+    new_posts = [post for post in posts if post["id"] != id]
+    save_json(file_path, new_posts)

@@ -13,6 +13,7 @@
             <h2>{{blog['title']}}</h2>
             <p><em>{{blog['author']}}</em></p>
             <p>{{blog['content']}}</p>
+            <button><a href="/delete/{{blog['id']}}">Delete</a></button>
         </div>
     {% endfor %}
     <button><a href="/add">Add new blog post</a></button>

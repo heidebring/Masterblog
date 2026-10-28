@@ -1,5 +1,5 @@
 from flask import Flask, redirect, render_template, request, url_for
-from helper import add_new_post, load_json
+from helper import add_new_post, delete_blog_post, load_json
 
 app = Flask(__name__)
 
@@ -31,6 +31,16 @@ def add():
             app.logger.exception(f"Error occured: {error}")
             return ("Internal Server Error", 500)
     return render_template("add.html")
+
+
+@app.route("/delete/<int:post_id>")
+def delete(post_id):
+    try:
+        delete_blog_post(post_id, FILE_PATH)
+        return redirect("/")
+    except Exception as error:
+        app.logger.exception(f"Error occured: {error}")
+        return ("Internal Server Error", 500)
 
 
 if __name__ == "__main__":
