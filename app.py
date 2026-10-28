@@ -1,21 +1,36 @@
-from json import JSONDecodeError
-
-from flask import Flask, jsonify, render_template
-from file_helper import load_json
+from flask import Flask, redirect, render_template, request, url_for
+from helper import add_new_post, load_json
 
 app = Flask(__name__)
 
 
+FILE_PATH = "blog_posts.json"
+
+
 @app.route("/")
 def index():
-    file_path = "blog_posts.json"
     try:
-        blog_posts = load_json(file_path)
-    except (FileNotFoundError, PermissionError, JSONDecodeError, Exception) as error:
+        blog_posts = load_json(FILE_PATH)
+    except Exception as error:
         app.logger.exception(f"Error occured: {error}")
         return ("Internal Server Error", 500)
     else:
         return render_template("index.html", posts=blog_posts)
+
+
+@app.route("/add", methods=["GET", "POST"])
+def add():
+    if request.method == "POST":
+        title = request.form.get("title")
+        author = request.form.get("author")
+        content = request.form.get("content")
+        try:
+            add_new_post(title, author, content, FILE_PATH)
+            return redirect("/")
+        except Exception as error:
+            app.logger.exception(f"Error occured: {error}")
+            return ("Internal Server Error", 500)
+    return render_template("add.html")
 
 
 if __name__ == "__main__":

@@ -25,3 +25,65 @@ h1 {
 .post p {
     margin: 10px 0;
 }
+
+form {
+    background-color: #FFF;
+    border: 1px solid #DDD;
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 600px;
+    border-radius: 8px;
+}
+
+form div {
+    margin-bottom: 15px;
+}
+
+form label {
+    display: block;
+    margin: 5px 0;
+    color: #4F4F4F;
+    font-weight: bold;
+}
+
+form input,
+form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #DDD;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #333;
+}
+
+form textarea {
+    resize: vertical;
+}
+
+form input:focus,
+form textarea:focus {
+    outline: none;
+    border-color: #888;
+}
+
+button {
+    background-color: #4F4F4F;
+    color: #FFF;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+button:hover {
+    background-color: #333;
+}
+
+a {
+    color: #FFF;
+    text-decoration: none;
+}

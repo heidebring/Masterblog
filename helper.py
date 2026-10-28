@@ -1,0 +1,23 @@
+import json
+
+
+def load_json(file_path):
+    with open(file_path, "r") as file:
+        return json.load(file)
+
+
+def save_json(file_path, posts):
+    with open(file_path, "w") as file:
+        json.dump(posts, file, indent=2)
+
+
+def add_new_post(title, author, content, file_path):
+    posts = load_json(file_path)
+    id = get_new_post_id(posts)
+    posts.append({"id": id, "author": author, "title": title, "content": content})
+    save_json(file_path, posts)
+
+
+def get_new_post_id(posts):
+    max_id = max((post["id"] for post in posts), default=0)
+    return max_id + 1
