@@ -27,3 +27,17 @@ def delete_blog_post(id, file_path):
     posts = load_json(file_path)
     new_posts = [post for post in posts if post["id"] != id]
     save_json(file_path, new_posts)
+
+
+def get_post_by_id(id, file_path):
+    posts = load_json(file_path)
+    post = [post for post in posts if post["id"] == id]
+    if len(post) > 0:
+        return post[0]
+
+
+def update_blog_post(id, title, author, content, file_path):
+    posts = load_json(file_path)
+    new_posts = [post for post in posts if post["id"] != id]
+    new_posts.append({"id": id, "author": author, "title": title, "content": content})
+    save_json(file_path, new_posts)

@@ -68,6 +68,11 @@ form textarea:focus {
     border-color: #888;
 }
 
+div.button_div {
+    display: flex;
+    justify-content:space-between
+}
+
 button {
     background-color: #4F4F4F;
     color: #FFF;
